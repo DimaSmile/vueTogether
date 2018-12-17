@@ -1,28 +1,83 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div>
+    <heeader>
+        <!-- <div> -->
+            <h1>My first experiments with components in Vue js!!!</h1>
+            <span>{{ interpolationInSlot }}</span>
+            <h2 slot="subtitle">Named slot - first group</h2>
+            <h2 slot="subtitle">Named slot2 - first group</h2>
+            
+        <!-- </div> -->
+    </heeader>
+    <!--<div>
+         <singlepagecomponent></singlepagecomponent>
+        <singlepagecomponent></singlepagecomponent>
+        <singlepagecomponent></singlepagecomponent>
+        <ProductItem></ProductItem>
+    </div> -->
+    <div class="container">    
+        <!-- <ProductsList @viewDetails="viewDetails"></ProductsList> -->
+        <!-- <ProductDetails :product="selectedProduct"></ProductDetails> -->
+        <ProductsList></ProductsList>
+        <div>
+            <span @click="mode = ( mode == 'view' ? 'add': 'view')">
+                switch: {{mode}}
+            </span>
+            <keep-alive> <!-- тег keep-alive позволяет сохранять данные(в инпутах и т.д) при переключении между компонентами-->
+                <component :is="componentName"></component>
+            </keep-alive>
+            <!-- а так не будут сохраняться-->
+                <component :is="componentName"></component>
+        </div>
+        <!--<ProductDetails></ProductDetails>
+        <product-add></product-add> -->
+    </div>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import singlecomponent from './Singlepagecomponent.vue'
+import Header from './Header.vue'
+import ProductDetails from './components/ProductDetails.vue'
+import ProductsList from './components/ProductsList.vue'
+import Dynamic from './components/Dynamic.vue'
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+    data(){
+        return {
+            interpolationInSlot: 'Default slot',
+            selectedProduct: {},
+            mode: 'view'
+        }
+    },
+    computed:{
+        componentName(){
+            return this.mode == 'view' ? 'ProductDetails' : 'product-add' // имя компонента который надо загружать динамически
+        }
+    },
+    components: {
+        'heeader': Header,
+        // 'singlepagecomponent': singlecomponent,
+        ProductDetails,
+        ProductsList,
+        'product-add': Dynamic
+
+    },
+    // methods: {
+    //             viewDetails(product){
+    //             this.selectedProduct = product;
+    //         }
+    //     }
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .container{
+    display:flex;
+    align-items:flex-start;
+  }
+
+  h2{
+      color: blue;
+  }
 </style>
