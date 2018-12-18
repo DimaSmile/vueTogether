@@ -29,6 +29,9 @@
             <!-- а так не будут сохраняться-->
                 <component :is="componentName"></component>
         </div>
+        <div class="filters">
+            <filters-component></filters-component>
+        </div>
         <!--<ProductDetails></ProductDetails>
         <product-add></product-add> -->
     </div>
@@ -41,6 +44,7 @@ import Header from './Header.vue'
 import ProductDetails from './components/ProductDetails.vue'
 import ProductsList from './components/ProductsList.vue'
 import Dynamic from './components/Dynamic.vue'
+import Filters from './components/Filters.vue'
 
 export default {
     data(){
@@ -60,7 +64,8 @@ export default {
         // 'singlepagecomponent': singlecomponent,
         ProductDetails,
         ProductsList,
-        'product-add': Dynamic
+        'product-add': Dynamic,
+        'filters-component': Filters
 
     },
     // methods: {
