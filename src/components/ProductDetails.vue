@@ -41,7 +41,7 @@
         },
         created() { //хук сробатывающий после инициализации объекта исп для получения данных с других сайтов(fetch) и т.д
             console.log('created');
-            setInterval(() => {this.counter++}, 1000)
+            // setInterval(() => {this.counter++}, 1000)
             ProductService.$on("viewDetails", (selectedProduct) => {
                 this.product = selectedProduct
             });
@@ -84,6 +84,6 @@
         border: 1px solid red;
         border-radius: 10px;
         margin: 10px;
-        padding: 10px;  
+        padding: 10px;
     }
 </style>
