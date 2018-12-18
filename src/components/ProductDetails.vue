@@ -14,7 +14,8 @@
             <label for="qt">Quantity</label>
             <span>{{product.qt}}</span>
         </div>
-        </form>    
+        </form>
+        {{counter}}
     </div>
 </template>
 
@@ -30,13 +31,49 @@
         // },
         data(){
             return {
+                counter: 1,
                 product: {}
             }
         },
-        created() {
+        beforeCreate() { //хук сробатывающий перед инициализацией объекта
+            console.log('before create');
+                
+        },
+        created() { //хук сробатывающий после инициализации объекта исп для получения данных с других сайтов(fetch) и т.д
+            console.log('created');
+            setInterval(() => {this.counter++}, 1000)
             ProductService.$on("viewDetails", (selectedProduct) => {
                 this.product = selectedProduct
             });
+        },
+
+        // самая первая вставка в DOM
+        beforeMount() { //подготовка перед вставкой в DOM
+            console.log('beforeMount');
+        },
+        mounted() { //Вставка в DOM компонента
+            console.log('mounted');
+        },
+        beforeUpdate() { //перерендеринг компонента(часть компонента)
+            console.log(this.counter);
+        },
+        updated() {
+            console.log("updated");
+        },
+        beforeDestroy() {//перед уничтожением компонента
+            this.leakyReference = null;
+            console.log("beforeDestroy");
+        },
+        destroyed() {//после уничтожения компонента
+            console.log("destroyed"); 
+        },
+
+        //Хуки срабатывающыие когда компонент обернут в тег <keep-alive>
+        activated() {//срабатывает при активации компонента
+            console.log("activated"); 
+        },
+        deactivated() {//срабатывает при деактивации компонента
+            console.log("deactivated"); 
         },
     }
 </script>

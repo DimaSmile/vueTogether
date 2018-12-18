@@ -23,8 +23,8 @@
             <span @click="mode = ( mode == 'view' ? 'add': 'view')">
                 switch: {{mode}}
             </span>
-            <keep-alive> <!-- тег keep-alive позволяет сохранять данные(в инпутах и т.д) при переключении между компонентами-->
-                <component :is="componentName"></component>
+            <keep-alive> <!-- тег keep-alive позволяет сохранять данные(в инпутах и т.д) при переключении между компонентами, т.е компонент не уничтожается(не завершает жизненный цикл)-->
+                <!-- <component :is="componentName"></component> -->
             </keep-alive>
             <!-- а так не будут сохраняться-->
                 <component :is="componentName"></component>
