@@ -3,7 +3,7 @@
         <div class="card-body">
             <h4 class="card-title">{{index}} {{product.title}}</h4>
             <p class="card-text">{{product.qt}} items for ${{product.price}}</p>
-            <a href="#" class="btn btn-primary" @click="viewDetailsClicked">View Details</a>            
+            <a href="#" class="btn btn-primary" @click="viewDetailsClicked">View Details</a>
         </div>
     </div>
 </template>
@@ -32,7 +32,9 @@
             viewDetailsClicked(){
                 // this.$emit("viewDetails", this.product.id);
                 // this.viewDetails(this.product.id)
-                ProductService.viewDetails(this.product.id)
+                // ProductService.viewDetails(this.product.id)
+                //this.$router.push('/detail/'+this.product.id)
+                this.$router.push({name:"product-detailes", params:{id: this.product.id}})
 
             }
         }

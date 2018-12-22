@@ -1,11 +1,12 @@
 <template>
 <div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <heeader>
         <!-- <div> -->
-            <h1>My first experiments with components in Vue js!!!</h1>
-            <span>{{ interpolationInSlot }}</span>
-            <h2 slot="subtitle">Named slot - first group</h2>
-            <h2 slot="subtitle">Named slot2 - first group</h2>
+            <h1>Routing in Vue js!!!</h1>
+                <!-- <span>{{ interpolationInSlot }}</span>
+                <h2 slot="subtitle">Named slot - first group</h2>
+                <h2 slot="subtitle">Named slot2 - first group</h2> -->
             
         <!-- </div> -->
     </heeader>
@@ -15,23 +16,24 @@
         <singlepagecomponent></singlepagecomponent>
         <ProductItem></ProductItem>
     </div> -->
-    <div class="container">    
+    <div class="container">
+        <router-view></router-view>
         <!-- <ProductsList @viewDetails="viewDetails"></ProductsList> -->
         <!-- <ProductDetails :product="selectedProduct"></ProductDetails> -->
-        <ProductsList></ProductsList>
+        <!-- <ProductsList></ProductsList>
         <div>
             <span @click="mode = ( mode == 'view' ? 'add': 'view')">
                 switch: {{mode}}
-            </span>
+            </span> -->
             <keep-alive> <!-- тег keep-alive позволяет сохранять данные(в инпутах и т.д) при переключении между компонентами, т.е компонент не уничтожается(не завершает жизненный цикл)-->
                 <!-- <component :is="componentName"></component> -->
             </keep-alive>
             <!-- а так не будут сохраняться-->
-                <component :is="componentName"></component>
-        </div>
-        <div class="filters">
+                <!-- <component :is="componentName"></component> -->
+        <!-- </div> -->
+        <!-- <div class="filters">
             <filters-component></filters-component>
-        </div>
+        </div> -->
         <!--<ProductDetails></ProductDetails>
         <product-add></product-add> -->
     </div>
@@ -41,9 +43,9 @@
 <script>
 // import singlecomponent from './Singlepagecomponent.vue'
 import Header from './Header.vue'
-import ProductDetails from './components/ProductDetails.vue'
-import ProductsList from './components/ProductsList.vue'
-import Dynamic from './components/Dynamic.vue'
+// import ProductDetails from './components/ProductDetails.vue'
+// import ProductsList from './components/ProductsList.vue'
+// import Dynamic from './components/Dynamic.vue'
 import Filters from './components/Filters.vue'
 
 export default {
@@ -62,9 +64,9 @@ export default {
     components: {
         'heeader': Header,
         // 'singlepagecomponent': singlecomponent,
-        ProductDetails,
-        ProductsList,
-        'product-add': Dynamic,
+        // ProductDetails,
+        // ProductsList,
+        // 'product-add': Dynamic,
         'filters-component': Filters
 
     },
@@ -77,10 +79,10 @@ export default {
 </script>
 
 <style>
-  .container{
+  /* .container{
     display:flex;
     align-items:flex-start;
-  }
+  } */
 
   h2{
       color: blue;

@@ -14,8 +14,16 @@
             <label for="qt">Quantity</label>
             <span>{{product.qt}}</span>
         </div>
-        </form>
         {{counter}}
+        </form>
+        <router-link :to="{name:'home'}">go to list</router-link><!-- если исп. динамические роуты надо 
+        использовать директиву v-bind(:) -->
+        <hr>
+         <router-link to="/detail/2">go to product 2</router-link><!-- ссылка на такойже компонент
+        роут меняеться 
+        а данные нет(т.е остаються с компонента с которого переходим),
+        чтобы это исправить устанавливаем вотчер(метод watch),
+        и там отслеживаем изменения урл -->
     </div>
 </template>
 
@@ -29,6 +37,7 @@
         //         required: true
         //     }
         // },
+        props: ['staticText'],
         data(){
             return {
                 counter: 1,
@@ -53,6 +62,12 @@
         },
         mounted() { //Вставка в DOM компонента
             console.log('mounted');
+            ProductService.viewDetails(this.$route.params.id)
+        },
+        watch:{
+            '$route.params.id'(id){
+                ProductService.viewDetails(id)
+            }
         },
         beforeUpdate() { //перерендеринг компонента(часть компонента)
             console.log(this.counter);

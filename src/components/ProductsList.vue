@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-link to="/add?text=hi" class="btn btn-outline-success">Add product</router-link>
         <!-- <ProductItem v-for="(product, i) in products" :key="product.id" 
         :product="product" :index="(i+1)" @viewDetails="viewDetails"></ProductItem> -->
         <!-- <ProductItem v-for="(product, i) in products" :key="product.id" 
